@@ -23,6 +23,10 @@ function FindRenWuZhuXian()
 	return -1,-1
 end
 function FindExitConversation()
+	if (isColor(1774,   64, 0xe8d8a6, 85) and isColor(1790,   65, 0xe5d5a0, 85)) then
+		x,y = 1774, 64
+		do return x,y end
+	end
 	x,y = findMultiColorInRegionFuzzy( 0xeadaa9, "12|1|0xebdaa9,25|1|0xeedfab,16|-9|0xf3edc2,214|1416|0xffffff,185|1416|0xffffff,165|1416|0xffffff", 90, 0, 0, 2047, 1535)
 	return x,y
 end

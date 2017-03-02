@@ -10,3 +10,5 @@ execute.lua
 monitor.lua
 
 viewTable.lua
+ZhuXianPattern.lua
+tool.lua

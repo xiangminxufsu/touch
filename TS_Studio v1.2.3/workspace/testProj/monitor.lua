@@ -1,7 +1,7 @@
 require("pattern")
 mflag = false
-
-function DoExitTemplate(find_func, name, tap_time, wait_func)
+local monitor = {}
+function monitor.DoExitTemplate(find_func, name, tap_time, wait_func)
 
 	local rt = false
 	toast(string.format('检测 %s', name),1)
@@ -14,10 +14,10 @@ function DoExitTemplate(find_func, name, tap_time, wait_func)
 	end
 
 	x,y = find_func()
-	mSleep(1000)
+	--mSleep(1000)
 	if x ~= -1  then
 		toast(string.format('发现了%s , 点击 %d %d',name,x,y),1)
-		mSleep(2000)
+		mSleep(1000)
 		tap(x,y)
 		mSleep(tap_time)
 		rt = true
@@ -29,7 +29,10 @@ function DoExitTemplate(find_func, name, tap_time, wait_func)
 	return rt
 end
 
-function DoDetectTemplate(find_func,name)
+monitor.DoHitBTTemplate = monitor.DoExitTemplate
+
+function monitor.DoDetectTemplate(find_func,name)
+	-- detec heiping, will wait until pattern is gone
 	mSleep(2000)
 	local rt = false
 	local detect = find_func()
@@ -57,32 +60,7 @@ function MonitorWhileTemplate(table)
 	return rt
 end
 
-function MonitorWhileZhuXian(one)
-	local block_flag = false
-	while (true) do
-		local flag = false
-		flag = flag or DoDetectTemplate(FindDetectDaHeiPing,'大黑屏')
-		--flag = flag or DoExitTemplate(FindBTQiangHua, '强化装备')
-		flag = flag or DoExitTemplate(FindBTTiaoZhanFuBen, '挑战副本')
-		flag = flag or DoExitTemplate(FindBTShiYong, '使用物品')
-		flag = flag or DoExitTemplate(FindZhuangBeiDianJi, '装备')
-		flag = flag or DoExitTemplate(FindKaiShiYouXi, '开始游戏', 10)
-		flag = flag or DoExitTemplate(FindExitChongZhi, '充值')
-		flag = flag or DoExitTemplate(FindExitConversation, '对话')
-		flag = flag or DoExitTemplate(FindExitQianDao, '签到')
-		flag = flag or DoExitTemplate(FindExitShiJieDiTu, '地图')
-		flag = flag or DoExitTemplate(FindExitYueKaTeQuan, '月卡特权')
-		if flag == true then
-			block_flag = true
-		else
-			break
-		end
-		if one == true then
-			break
-		end
-	end
-	return block_flag
-end
+
 
 function MonitorWhileShimen()
 	while true do
@@ -115,3 +93,4 @@ function Monitor()
 	end
 	return flag
 end
+return monitor
