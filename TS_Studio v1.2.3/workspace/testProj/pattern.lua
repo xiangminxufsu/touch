@@ -1,12 +1,12 @@
 rx = 1
 ry = 1
+local gpattern = {}
 
-
-function FindRenWuShimen()
+function gpattern.FindRenWuShimen()
 	x,y = findMultiColorInRegionFuzzy( 0x73cf49, "0|9|0x71cf48,16|-5|0x75d84b,23|-5|0x74d54a,55|-5|0x77df4d,53|20|0x77de4c", 70, 0, 0, 600, 800)
 	return x,y
 end
-function FindRenWuYin()
+function gpattern.FindRenWuYin()
 	x,y = findMultiColorInRegionFuzzy( 0x76f692, "0|16|0x7cff98,8|17|0x70eb8a,8|2|0x70ec8a,3|-6|0x022a0b,3|23|0x002909,-12|15|0x002709", 70, 0, 0, 600, 800)
 	return x,y
 end
@@ -102,3 +102,5 @@ function FindBTTiaoZhanFuBen()
 	x,y = findMultiColorInRegionFuzzy( 0x90b7d9, "274|-4|0x8cb5d5,-7|64|0x96b7e0,258|50|0xa4c6e7,53|25|0x1c2832,121|45|0x1c2832,204|22|0x1c2832", 80, 571,  951, 2047, 1535)
 	return x,y
 end
+
+return gpattern

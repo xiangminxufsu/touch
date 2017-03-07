@@ -12,3 +12,5 @@ monitor.lua
 viewTable.lua
 ZhuXianPattern.lua
 tool.lua
+ShiMenPattern.lua
+ZhiYinPattern.lua

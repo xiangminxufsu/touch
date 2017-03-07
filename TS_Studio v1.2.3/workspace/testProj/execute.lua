@@ -1,8 +1,10 @@
-require("pattern")
+local gpattern = require("pattern")
 require("tool")
 local thread = require('thread')
 local monitor = require("monitor")
 local zhuxian = require('ZhuXianPattern')
+local shimen = require("ShiMenPattern")
+local zhiyin = require("ZhiYinPattern")
 
 execute = {}
 local function DoubleCheck(func,fun_monitor)
@@ -45,7 +47,7 @@ local function DoRenWuTemplate(find_func, name, while_func)
 			mtoast(string.format('循环检测，这次没找到 %s', name),1)
 			local block_flag = while_func()
 			if block_flag == false then
-				double_check_flag = DoubleCheck(find_func, Monitor)
+				double_check_flag = DoubleCheck(find_func, while_func)
 				if double_check_flag == false then
 					mtoast(string.format('二次验证成功，继续做 %s',name),1)
 				else
@@ -76,9 +78,9 @@ end
 
 function execute.DoRenWu()
 	--DoRenWuTemplate(FindShimen,'师门', MonitorWhileShimen)
-	mtoast('enter zhuxian',2)
-	DoRenWuTemplate(FindRenWuZhuXian, '主线', zhuxian.MonitorWhileZhuXian)
-	mtoast('exit zhuxian', 2)
+	--DoRenWuTemplate(FindRenWuZhuXian, '主线', zhuxian.MonitorWhileZhuXian)
+	--DoRenWuTemplate(gpattern.FindRenWuShimen,'师门', shimen.MonitorWhileShimen)
+	DoRenWuTemplate(gpattern.FindRenWuYin,'指引',zhiyin.MonitorWhileZhiYin)
 	--DoRenWuTemplate(FindYin, '指引')
 end
 
