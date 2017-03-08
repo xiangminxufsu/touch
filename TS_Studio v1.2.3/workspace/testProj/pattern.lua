@@ -3,13 +3,22 @@ ry = 1
 local gpattern = {}
 
 function gpattern.FindRenWuShimen()
-	x,y = findMultiColorInRegionFuzzy( 0x73cf49, "0|9|0x71cf48,16|-5|0x75d84b,23|-5|0x74d54a,55|-5|0x77df4d,53|20|0x77de4c", 70, 0, 0, 600, 800)
+	x,y = findMultiColorInRegionFuzzy( 0x6ac946, "6|0|0x6fcb4b,18|-4|0x74db4b,24|-10|0x71d449,12|-10|0x6fd349,11|10|0x6fd248,124|-5|0x77df4e", 80, 59, 243, 456, 688)
 	return x,y
 end
 function gpattern.FindRenWuYin()
 	x,y = findMultiColorInRegionFuzzy( 0x76f692, "0|16|0x7cff98,8|17|0x70eb8a,8|2|0x70ec8a,3|-6|0x022a0b,3|23|0x002909,-12|15|0x002709", 70, 0, 0, 600, 800)
 	return x,y
 end
+
+function gpattern.FindExitDuiHua()
+	local x,y = -1,-1
+	if (isColor(1197, 727, 0x5bdef3, 85) and isColor(1182,  724, 0xfefae1, 85) and isColor(1196,  705, 0xf2ce7e, 85) and isColor(1196,  749, 0xfdea99, 85)) then
+		x,y = 1197, 727
+	end
+	return x,y
+end
+
 function FindRenWuZhuXian()
 	x,y = findMultiColorInRegionFuzzy( 0xf2eeb7, "0|9|0x220f00,-11|-1|0x220f01,-13|-10|0x220f00,13|-8|0x220f00,13|-1|0x220f00", 70, 0, 0, 415, 697)
 	if x ~= -1 then

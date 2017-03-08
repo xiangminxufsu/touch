@@ -60,9 +60,9 @@ local function DoRenWuTemplate(find_func, name, while_func)
 		else
 			mtoast(string.format('循环检测到%s，点击 %d %d',name,x,y),1)
 			tap(x,y)
-			mSleep(2000)
-			while_func(true)
 			mSleep(5000)
+			while_func()
+			mSleep(2000)
 			if xx ~= x then
 				toast(string.format('两次检测%d %d %d %d 数值不一样',x,y,xx,yy),1)
 				mSleep(1000)
@@ -77,9 +77,8 @@ end
 
 
 function execute.DoRenWu()
-	--DoRenWuTemplate(FindShimen,'师门', MonitorWhileShimen)
 	--DoRenWuTemplate(FindRenWuZhuXian, '主线', zhuxian.MonitorWhileZhuXian)
-	--DoRenWuTemplate(gpattern.FindRenWuShimen,'师门', shimen.MonitorWhileShimen)
+	DoRenWuTemplate(gpattern.FindRenWuShimen,'师门', shimen.MonitorWhileShimen)
 	DoRenWuTemplate(gpattern.FindRenWuYin,'指引',zhiyin.MonitorWhileZhiYin)
 	--DoRenWuTemplate(FindYin, '指引')
 end
